@@ -29,18 +29,16 @@ def parseHTML(html):
 		}
 
 def write_to_file(content):
-	with open('maoyan_result.txt','a',encoding='utf-8') as f:
+	with open('../Result/maoyan_result.txt','a',encoding='utf-8') as f:
 		f.write(json.dumps(content,ensure_ascii=False) + '\n')
 		f.close()
 
 def main(offset):
 	for item in parseHTML(getHTML(base_url,offset)):
-		print(item)
 		write_to_file(item)
+
 if __name__ == "__main__":
 	for i in range(0,100,10):
-		for item in parseHTML(getHTML(base_url,i)):
-			print(item)
-			write_to_file(item)
+		main(i)
 	# pool = Pool()
 	# pool.map(main,[i for i in range(0,100,10)])
